@@ -22,21 +22,29 @@ export default function Header() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white/80 backdrop-blur-md dark:bg-gray-900/80' : 'bg-transparent'
+        scrolled ? 'bg-white/80 py-2 backdrop-blur-md dark:bg-gray-900/80' : 'bg-transparent py-6'
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-4 py-4">
-        <div className="text-2xl font-bold text-gray-800 dark:text-white">John Doe</div>
+      <div className="mx-auto flex max-w-4xl items-center justify-between px-4">
+        <div
+          className={`font-bold text-gray-800 transition-all duration-300 dark:text-white ${
+            scrolled ? 'text-2xl' : 'text-3xl'
+          }`}
+        >
+          John Doe
+        </div>
         <nav className="hidden space-x-4 md:flex">
-          <a href="#work" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-            Work
-          </a>
-          <a href="#about" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-            About
-          </a>
-          <a href="#contact" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
-            Contact
-          </a>
+          {['Work', 'About', 'Contact'].map((item) => (
+            <a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className={`text-gray-600 transition-all duration-300 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white ${
+                scrolled ? 'text-base' : 'text-lg'
+              }`}
+            >
+              {item}
+            </a>
+          ))}
         </nav>
         <Button
           variant="ghost"
